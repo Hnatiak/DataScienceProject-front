@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "DataScienceProject-front"
+name = "photoshare-python-front"
 version = "0.1.0"
 description = ""
-authors = ["Roman Hnatiak <romanhnatiak@gmail.com>"]
+authors = ["Gennadiy Shpak <gena_shpak@ukr.net>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
