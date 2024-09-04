@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гільдія чарівників</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Гільдія чарівників</h1>
+        
+        <div class="photo-card-wrapper">
+            <div class="buttons">
+                {% comment %} <a href="/users" class="magic-button"><button>Досьє магів</button></a> {% endcomment %}
+                <a href="/login" class="magic-button"><button>Вхід в портал</button></a>
+                <a href="/signup" class="magic-button"><button>Обряд посвячення</button></a>
+                <a href="/user" class="magic-button"><button>Моє чарівне досьє</button></a>
+                {% comment %} <a href="/photos" class="magic-button"><button>Магічна сфера</button></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="photo-card-container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>

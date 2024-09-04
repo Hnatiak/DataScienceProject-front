@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}User Details{% endblock %}
+
+{% block content %}
+
+    <h1>Секрети створіння</h1>
+
+    <!-- Display Single User -->
+    {% if user %}
+        <div class="user-details">
+            <!-- Avatar -->
+            <div class="avatar-container">
+                <img src="{{ user.avatar }}" alt="Avatar" class="photo-profile">
+            </div>
+
+            <!-- User Details -->
+            <div>
+                <table>
+                    <tbody>
+                        <!-- <tr>
+                            <th>ID:</th>
+                            <td>{{ user.id }}</td>
+                        </tr> -->
+                        <tr>
+                            <th>Істинне імʼя:</th>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Совина пошта:</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Чарофон:</th>
+                            <br />
+                            <td>{{ user.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Поява на світ:</th>
+                            <td>{{ user.birthday }}</td>
+                        </tr>
+                        <!-- <tr>
+                            <th>Created At:</th>
+                            <td>{{ user.created_at }}</td>
+                        </tr> -->
+                        <tr>
+                            <th>Ранг:</th>
+                            <td>{{ user.role }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <a href="/edit_user"><button>Оновити секретні відомості</button></a>
+            <!-- <a href="/my_photos"><button>My Photos</button></a> -->
+            <a href="/upload_photo"><button>Додати диво</button></a>
+            <a href="/update_avatar"><button>Змінити відображення </button></a>
+            <a href="/logout"><button class="btn-block">Закрити портал</button></a>
+        </div>
+
+    {% else %}
+        <p>Недопустимі значення.</p>
+    {% endif %}
+
+{% endblock %}

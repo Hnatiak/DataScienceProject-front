@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "DataScienceProject-front"
+version = "0.1.0"
+description = ""
+authors = ["Roman Hnatiak <romanhnatiak@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = "^0.29.0"
+starlette = "^0.37.2"
+itsdangerous = "^2.2.0"
+requests = "^2.32.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
