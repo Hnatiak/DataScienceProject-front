@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Photo{% endblock %}
+
+{% block content %}
+
+<h1>Додавання дива</h1>
+
+<!-- Photo Upload Form -->
+<form id="uploadForm" action="/upload_pdf" method="post" enctype="multipart/form-data" class="form-block-upload">
+    <!-- <label for="photo">Оберіть диво:</label><br> -->
+
+    <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
+    <label for="pdf" class="file-upload-label">Оберіть чаролист PDF</label>
+
+    
+    <label for="description">Задайте питання до часолита:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" maxlength="500" required></textarea><br><br>
+
+    <button type="submit">Додати чаролист</button>
+</form>
+
+
+{% endblock %}
