@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "photoshare-python-front"
+name = "datascience-python-front"
 version = "0.1.0"
 description = ""
 authors = ["Gennadiy Shpak <gena_shpak@ukr.net>"]
@@ -12,6 +12,7 @@ uvicorn = "^0.29.0"
 starlette = "^0.37.2"
 itsdangerous = "^2.2.0"
 requests = "^2.32.2"
+pdfplumber = "^0.11.4"
 
 
 [build-system]
