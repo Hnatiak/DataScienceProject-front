@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="file"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"], button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+        }
+        .logout-btn {
+            background-color: #f44336;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Main Screen</h1>
+
+        <!-- Login Form -->
+        <form method="POST" action="/login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+
+        <!-- Document Upload Form -->
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <label for="document">Upload Document:</label>
+            <input type="file" id="document" name="document" required>
+
+            <input type="submit" value="Upload">
+        </form>
+
+        <!-- Dialog Selection -->
+        <form method="GET" action="/select_dialog">
+            <label for="dialog">Select Document for Dialog:</label>
+            <input type="text" id="dialog" name="dialog" placeholder="Enter document name" required>
+
+            <input type="submit" value="Select Dialog">
+        </form>
+
+
+            <!-- Форма для вибору діалогу -->
+    <form method="GET" action="/select_dialog">
+        <label for="dialog">Доступні діалоги:</label>
+        <select id="dialog" name="dialog">
+            <!-- Динамічне заповнення опцій випадаючого списку -->
+            {% for dialog in dialogs %}
+                <option value="{{ dialog }}">{{ dialog }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Підтвердити вибір</button>
+    </form>
+
+        <!-- Display Dialog and Enter Question -->
+        <h2>Current Dialog</h2>
+        <textarea rows="10" readonly>{{ dialog_content }}</textarea>
+
+        <form method="POST" action="/ask_question">
+            <label for="question">Ask a Question:</label>
+            <textarea id="question" name="question" rows="3" required></textarea>
+
+            <input type="submit" value="Ask">
+        </form>
+
+        <!-- Logout Button -->
+        <form method="POST" action="/logout">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
