@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гільдія чарівників</title>
+
     <link rel="stylesheet" href="../static/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Гільдія чарівників</h1>
+        <h1 class="title">Гільдія чарівників</h1>
         
         <div class="photo-card-wrapper">
             <div class="buttons">
@@ -17,11 +22,11 @@
                 <a href="/signup" class="magic-button"><button>Обряд посвячення</button></a>
                 <a href="/user" class="magic-button"><button>Моє чарівне досьє</button></a>
                 <!-- <a href="/upload_pdf" class="magic-button"><button>Магічна сфера</button></a> -->
-                <a href="/pdf/upload_pdf_test" class="magic-button"><button>Магічна сфера_test</button></a>
+                <a href="/pdf/upload_pdf_test" class="magic-button"><button>Магічна сфера</button></a>
             </div>
-        </div>
-        <div class="photo-card-container">
-            {% block content %}{% endblock %}
+            <div class="photo-card-container">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 

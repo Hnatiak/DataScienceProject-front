@@ -1,15 +1,321 @@
+/* .pacifico-regular {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+} */
+
+/* @font-face {
+    font-family: 'Pacifico';
+    src: url('Pacifico-Regular.ttf');
+} */
+
+body {
+    /* font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal; */
+
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+
+    height: auto;
+}
+
+input {
+    padding: 10px 20px;
+    width: 400px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Magical', Arial, sans-serif;
+
+    @media screen and (max-width: 768px) {
+        width: 95%;
+    }
+}
+
+
+label {
+    font-size: 25px;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    font-size: 26px;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-family: 'Magical', Arial, sans-serif;
+    scrollbar-width: none;
+    height: 30px;
+
+    &:focus {
+        box-shadow: 0 0 10px rgba(227, 225, 230, 0.7), 0 0 20px rgba(181, 181, 181, 0.5), 0 0 30px rgba(223, 222, 224, 0.3);
+        outline: none;
+    }
+}
+
+#document {
+    display: flex;
+    width: 350px;
+    border-radius: 30px 20px 20px 30px;
+}
+
+.forms-top {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        width: 40%;
+    }
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-overflow: unset;
+    user-select: text;
+    border: none;
+
+    width: 250px;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.form-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    color: black;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.photo-card-wrapper {
+    display: flex;
+    background-color: black;
+    gap: 50px;
+    height: 93.65vh;
+    width: 100%;
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin: 50px;
+    }
+
+}
+
+.photo-card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.photo-card-container-second {
+    width: 80%;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-signup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Приховати реальний input file */
+.file-upload-input {
+    display: none;
+}
+
+
+.form-block-upload {
+    button {
+        width: 250px;
+    }
+}
+
+.form-control:focus {
+    box-shadow: 0 0 20px rgba(227, 225, 230, 0.7), 0 0 30px rgba(181, 181, 181, 0.5), 0 0 40px rgba(223, 222, 224, 0.3);
+    outline: none;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    background: black;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.form-login, .form-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+        font-family: 'Magical', Arial, sans-serif;
+    }
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
+
+.btn {
+    width: 250px;
+}
+
+.question-form {
+    display: flex;
+    gap: 20px;
+
+    input {
+        width: 140px;
+        margin-top: 0px;
+    }
+}
+
 .page-layout {
     display: flex;
+    flex-direction: row;
+    height: 92.1vh;
     width: 100%;
 }
 
 .sidebar {
-    width: 25%;
-    padding-right: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.forms-top {
+    flex: 1;
+}
+
+.chat-form-container {
+    margin-top: auto;
 }
 
 .content {
-    width: 75%;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Стилізація кнопки для вибору файлу */
+.file-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Приховати реальний input file */
+.file-upload-input {
+    display: none;
+}
+
+.sidebar {
+    width: 80%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content {
+    width: 15%;
     padding-left: 20px;
 }
 

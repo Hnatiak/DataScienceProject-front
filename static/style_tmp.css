@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Magical';
-    src: url('kurale-regular.otf');
+    font-family: 'Pacifico';
+    src: url('Pacifico-Regular.ttf');
 }
 
 body {
@@ -312,6 +312,15 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    input {
+        width: 100px;
+        background-color: #ea0000;
+    }
+
+    button {
+        width: 150px;
+    }
 }
 
 .form-control:focus {
