@@ -198,10 +198,6 @@ async def login_user(request: Request):
 async def search_users(request: Request):
     access_token = request.session.get("access_token")
     if not access_token:
-        # raise HTTPException(
-        #     status_code=status.HTTP_401_UNAUTHORIZED,
-        #     detail="Access token missing or invalid",
-        # )
         return templates.TemplateResponse(
                     "access_denied.html", {"request": request}
                 )
