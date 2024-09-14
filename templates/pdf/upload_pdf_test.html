@@ -8,16 +8,16 @@
     <div class="sidebar">
         <div class="forms-top">
             <h1>Додавання дива</h1>
-
+            
             <!-- Photo Upload Form -->
             <form id="uploadForm" action="/pdf/upload_pdf_test_new" method="post" enctype="multipart/form-data" class="form-block-upload">
-                <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
                 <label for="pdf" class="file-upload-label">Оберіть чаролист PDF</label>
-                <button type="submit" class="file-upload-button" onclick="document.getElementById('pdf').click();">Додати чаролист</button>
+                <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
+                <button type="button" class="file-upload-button" onclick="document.getElementById('pdf').click();">Додати чаролист</button>
             </form>
 
             <!-- Форма для вибору документу -->
-            <form method="POST" action="/pdf/upload_page" class="form-block-upload">
+            <form method="POST" action="/pdf/upload_page">
                 <label for="document">Доступні чаролисти:</label>
                 <select id="document" name="document">
                     {% for document in documents %}
@@ -31,38 +31,33 @@
             </form>
         </div>
 
-        <div class="chat-form-container">
-            <!-- Форма для запитів -->
+        <div class="chat-wrapper">
+            <!-- Display document history -->
+            <h2>Історія запитів</h2>
+            <div class="document-container">
+                {% for question, answer in document_content %}
+                <div class="document-pair">
+                    <div class="message question">
+                        <div class="message-bubble question">{{ question }}</div>
+                    </div>
+                    <div class="message answer">
+                        <div class="message-bubble-two answer">{{ answer }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Chat input form -->
             <form method="POST" action="/pdf/ask_question" class="chat-container">
                 <label for="question">Запитати у магічній кулі:</label>
                 <div class="question-form">
-                    <textarea id="question" name="question" rows="3" required></textarea>
+                    <input id="question" name="question" class="question-input" type="text" required></input>
                     <input type="hidden" name="document_content" value="{{ document_content }}">
                     <input type="hidden" name="document" value="{{ selected_document }}">
                     <input type="hidden" name="documents" value="{{ documents | join(',') }}">
                     <input type="submit" value="Запитати">
                 </div>
             </form>
-        </div>
-    </div>
-
-    <div class="content">
-        <!-- Display document -->
-        <h2>Історія запитів</h2>
-        <div class="document-container">
-            {% for question, answer in document_content %}
-            <div class="document-pair">
-                <!-- Питання зліва -->
-                <div class="message question">
-                    <div class="message-bubble question">{{ question }}</div>
-                </div>
-
-                <!-- Відповідь справа -->
-                <div class="message answer">
-                    <div class="message-bubble answer">{{ answer }}</div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 </div>
