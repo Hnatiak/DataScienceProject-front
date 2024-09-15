@@ -30,7 +30,7 @@
                             <th>Совина пошта:</th>
                             <td>{{ user.email }}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>Чарофон:</th>
                             <br />
                             <td>{{ user.phone }}</td>
@@ -39,14 +39,10 @@
                             <th>Поява на світ:</th>
                             <td>{{ user.birthday }}</td>
                         </tr>
-                        <!-- <tr>
-                            <th>Created At:</th>
-                            <td>{{ user.created_at }}</td>
-                        </tr> -->
                         <tr>
                             <th>Ранг:</th>
                             <td>{{ user.role }}</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -54,11 +50,8 @@
 
         <!-- Buttons -->
         <div class="buttons">
-            <a href="/edit_user"><button>Оновити секретні відомості</button></a>
-            <!-- <a href="/my_photos"><button>My Photos</button></a> -->
-            <a href="/upload_photo"><button>Додати диво</button></a>
-            <a href="/update_avatar"><button>Змінити відображення </button></a>
             <a href="/logout"><button class="btn-block">Закрити портал</button></a>
+            <a href="/delete"><button>Уйти в забуття</button></a>
         </div>
 
     {% else %}

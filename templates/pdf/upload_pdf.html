@@ -9,14 +9,14 @@
         <h1>Додавання дива</h1>
 
         <!-- Photo Upload Form -->
-        <form id="uploadForm" action="/pdf/upload_pdf_test_new" method="post" enctype="multipart/form-data" class="form-block-upload">
+        <form id="uploadForm" action="/upload_pdf" method="post" enctype="multipart/form-data" class="form-block-upload">
             <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
             <label for="pdf" class="file-upload-label">Оберіть чаролист PDF</label>
             <button type="submit">Додати чаролист</button>
         </form>
 
         <!-- Форма для вибору документу -->
-        <form method="POST" action="/pdf/upload_page">
+        <form method="POST" action="/upload_page">
             <label for="document">Доступні чаролисти:</label>
             <select id="document" name="document">
                 {% for document in documents %}
@@ -29,7 +29,7 @@
             <button type="submit">Підтвердити вибір</button>
         </form>
 
-        <form method="POST" action="/pdf/ask_question">
+        <form method="POST" action="/ask_question">
             <label for="question">Запитати у магічній кулі:</label>
             <textarea id="question" name="question" rows="3" required></textarea>
             <input type="hidden" name="document_content" value="{{ document_content }}">
