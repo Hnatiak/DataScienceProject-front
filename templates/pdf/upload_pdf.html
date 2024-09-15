@@ -6,57 +6,80 @@
 
 <div class="page-layout">
     <div class="sidebar">
+
         <h1>Додавання дива</h1>
 
         <!-- Photo Upload Form -->
-        <form id="uploadForm" action="/upload_pdf" method="post" enctype="multipart/form-data" class="form-block-upload">
-            <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
-            <label for="pdf" class="file-upload-label">Оберіть чаролист PDF</label>
-            <button type="submit">Додати чаролист</button>
-        </form>
 
-        <!-- Форма для вибору документу -->
-        <form method="POST" action="/upload_page">
-            <label for="document">Доступні чаролисти:</label>
-            <select id="document" name="document">
-                {% for document in documents %}
-                <option value="{{ document }}" {% if document == selected_document %}selected{% endif %}>
-                    {{ document }}
-                </option>
+        <div class="form-block">
+
+            <div id="loading-spinner" style="display: none">
+                <div class="spinner"></div>
+                <p>Іде завантаження документу, зачекайте будь ласка...</p>
+            </div>
+
+            <div id="loading-answear" style="display: none">
+                <div class="spinner"></div>
+                <p>Шукаємо відповідь на ваше запитання...</p>
+            </div>
+
+            <form id="uploadForm" action="/upload_pdf" method="post" enctype="multipart/form-data" class="form-block-upload">
+                <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
+                <label for="pdf">Оберіть чаролист</label>
+                <p id="fileName">Нічого не вибрано</p>
+                <button type="submit">Додати чаролист</button>
+            </form>
+
+            <!-- Форма для вибору документу -->
+            <form method="POST" action="/upload_page" id="form-ask-user">
+                <label for="document">Доступні чаролисти:</label>
+                <select id="document" name="document">
+                    {% for document in documents %}
+                    <option value="{{ document }}" {% if document == selected_document %}selected{% endif %}>
+                        {{ document }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="documents" value="{{ documents | join(',') }}">
+                <button type="submit">Підтвердити вибір</button>
+            </form>
+        </div>
+
+        <div class="content">
+            <!-- Display document -->
+            <h2>Історія запитів</h2>
+            <div class="document-container">
+                {% for question, answer in document_content %}
+                <div class="document-pair">
+                    <!-- Питання зліва -->
+                    <div class="message question">
+                        <div class="message-bubble question">{{ question }}</div>
+                    </div>
+    
+                    <!-- Відповідь справа -->
+                    <div class="message answer">
+                        <div class="message-bubble-two answer">{{ answer }}</div>
+                    </div>
+                </div>
+
                 {% endfor %}
-            </select>
-            <input type="hidden" name="documents" value="{{ documents | join(',') }}">
-            <button type="submit">Підтвердити вибір</button>
-        </form>
+            </div>
+        </div>
 
-        <form method="POST" action="/ask_question">
+
+        <form method="POST" action="/ask_question" class="form-ask-user">
+
             <label for="question">Запитати у магічній кулі:</label>
-            <textarea id="question" name="question" rows="3" required></textarea>
-            <input type="hidden" name="document_content" value="{{ document_content }}">
-            <input type="hidden" name="document" value="{{ selected_document }}">
-            <input type="hidden" name="documents" value="{{ documents | join(',') }}">
-            <input type="submit" value="Запитати">
+            <div class="chat-form-container">
+                <input id="question" type="text" name="question" rows="3" required></input>
+                <input type="hidden" name="document_content" value="{{ document_content }}">
+                <input type="hidden" name="document" value="{{ selected_document }}">
+                <input type="hidden" name="documents" value="{{ documents | join(',') }}">
+                <button type="submit" id="form-ask-user"><i class="fa-solid fa-paper-plane"></i></button>
+                <button type="submit" id="form-ask-user" class="delete-button"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
         </form>
         
-    </div>
-    <div class="content">
-        <!-- Display document -->
-        <h2>Історія запитів</h2>
-        <div class="document-container">
-            {% for question, answer in document_content %}
-            <div class="document-pair">
-                <!-- Питання зліва -->
-                <div class="message question">
-                    <div class="message-bubble question">{{ question }}</div>
-                </div>
-
-                <!-- Відповідь справа -->
-                <div class="message answer">
-                    <div class="message-bubble answer">{{ answer }}</div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
     </div>
 </div>
 
