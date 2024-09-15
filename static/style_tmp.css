@@ -309,7 +309,7 @@ button:hover {
 
 .form-block-upload {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
 
@@ -369,30 +369,6 @@ button:hover {
 
 .file-upload-input {
     display: none;
-}
-
-.file-upload-label {
-    background-color: #6200ea;
-    border: none;
-    color: white;
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    font-family: 'Magical', Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 15px 0px;
-    @media screen and (max-width: 768px) {
-        max-width: 300px;
-    }
 }
 
 .hidden {
