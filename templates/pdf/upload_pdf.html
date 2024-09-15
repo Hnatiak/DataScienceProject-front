@@ -10,6 +10,7 @@
         <h1>Додавання дива</h1>
 
         <!-- Photo Upload Form -->
+
         <div class="form-block">
 
             <div id="loading-spinner" style="display: none">
@@ -22,7 +23,7 @@
                 <p>Шукаємо відповідь на ваше запитання...</p>
             </div>
 
-            <form id="uploadForm" action="/pdf/upload_pdf_test_new" method="post" enctype="multipart/form-data" class="form-block-upload">
+            <form id="uploadForm" action="/upload_pdf" method="post" enctype="multipart/form-data" class="form-block-upload">
                 <input type="file" class="file-upload-input" id="pdf" name="pdf" accept="application/pdf" style="display: none;" required />
                 <label for="pdf">Оберіть чаролист</label>
                 <p id="fileName">Нічого не вибрано</p>
@@ -30,7 +31,7 @@
             </form>
 
             <!-- Форма для вибору документу -->
-            <form method="POST" action="/pdf/upload_page" id="form-ask-user">
+            <form method="POST" action="/upload_page" id="form-ask-user">
                 <label for="document">Доступні чаролисти:</label>
                 <select id="document" name="document">
                     {% for document in documents %}
@@ -60,11 +61,14 @@
                         <div class="message-bubble-two answer">{{ answer }}</div>
                     </div>
                 </div>
+
                 {% endfor %}
             </div>
         </div>
 
-        <form method="POST" action="/pdf/ask_question" class="form-ask-user">
+
+        <form method="POST" action="/ask_question" class="form-ask-user">
+
             <label for="question">Запитати у магічній кулі:</label>
             <div class="chat-form-container">
                 <input id="question" type="text" name="question" rows="3" required></input>
