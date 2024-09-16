@@ -48,21 +48,23 @@
         <div class="content">
             <!-- Display document -->
             <h2>Історія запитів</h2>
-            <div class="document-container">
-                {% for question, answer in document_content %}
-                <div class="document-pair">
-                    <!-- Питання зліва -->
-                    <div class="message question">
-                        <div class="message-bubble question">{{ question }}</div>
+            <div class="document-container-two">
+                <div class="document-container">
+                    {% for question, answer in document_content %}
+                    <div class="document-pair">
+                        <!-- Питання зліва -->
+                        <div class="message question">
+                            <div class="message-bubble question">{{ question }}</div>
+                        </div>
+                    
+                        <!-- Відповідь справа -->
+                        <div class="message answer">
+                            <div class="message-bubble-two answer">{{ answer }}</div>
+                        </div>
                     </div>
-    
-                    <!-- Відповідь справа -->
-                    <div class="message answer">
-                        <div class="message-bubble-two answer">{{ answer }}</div>
-                    </div>
-                </div>
 
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
 

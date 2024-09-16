@@ -79,6 +79,10 @@ a {
     text-decoration: none;
 }
 
+th, td {
+    font-size: 26px;
+}
+
 form {
     display: flex;
     justify-content: space-between;
@@ -133,6 +137,16 @@ button {
 
     font-size: 24px;
 
+}
+
+.document-container-two {
+    overflow-y: auto;
+    color: black;
+    font-family: none;
+    position: relative;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    height: 800px;
 }
 
 .document-container::before {
@@ -193,6 +207,18 @@ button {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+
+    p {
+        font-size: 28px;
+    }
+
+    ul {
+        li {
+            strong {
+                font-size: 26px;
+            }
+        }
+    }
 }
 
 
@@ -323,10 +349,6 @@ button {
     flex: 1;
 }
 
-.chat-form-container {
-    margin-top: auto;
-}
-
 .content::-webkit-scrollbar {
     width: 8px;
 }
@@ -373,6 +395,7 @@ button {
     .chat-form-container {
         display: flex;
         gap: 15px;
+        margin-top: auto;
 
         input {
             padding: 10px 20px;

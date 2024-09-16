@@ -41,7 +41,6 @@ document.getElementById('pdf').addEventListener('change', function() {
 
 
 
-
 // document.addEventListener('mousemove', (event) => {
 //     const { clientX: x, clientY: y } = event;
 //     createStar(x, y);
