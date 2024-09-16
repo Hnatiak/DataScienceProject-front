@@ -81,18 +81,14 @@
         </form>
 
 
-        <form method="POST" action="/delete_logs" class="form-ask-user">
-
-            <!-- <label for="question">Запитати у магічній кулі:</label> -->
+        <!-- <form method="POST" action="/delete_logs" class="form-ask-user">
             <div class="chat-form-container">
-                <!-- <input id="question" type="text" name="question" rows="3" required></input> -->
                 <input type="hidden" name="document_content" value="{{ document_content | default('[]') }}">
                 <input type="hidden" id="document" name="document" value="{{ selected_document }}">
                 <input type="hidden" name="documents" value="{{ documents | join(',') }}">
-                <!-- <button type="submit" id="form-ask-user"><i class="fa-solid fa-paper-plane"></i></button> -->
                 <button type="submit" id="form-del-log" class="delete-button"><i class="fa-solid fa-trash-can"></i></button>
             </div>
-        </form>
+        </form> -->
 
 
     </div>

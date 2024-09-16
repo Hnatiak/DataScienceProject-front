@@ -5,8 +5,8 @@ from fastapi.templating import Jinja2Templates
 from src.services.pdf_precessing import extract_text_from_pdf
 from envir_ import *
 # import requests
-import ast
-
+# import ast
+# import json
 
 router = APIRouter()
 
@@ -58,12 +58,12 @@ async def delete_form(request: Request):
 # Функція видалення користувача
 @router.post("/delete", response_class=HTMLResponse)
 async def delete_user(request: Request):
+
+    # form_data = {
+    #     "password": password,
+    # }
     access_token = request.session.get("access_token")
     if not access_token:
-        # raise HTTPException(
-        #     status_code=status.HTTP_401_UNAUTHORIZED,
-        #     detail="Access token missing or invalid",
-        # )
         return templates.TemplateResponse(
                     "auth/access_denied.html", {"request": request}
                 )
@@ -71,14 +71,18 @@ async def delete_user(request: Request):
         try:
             headers = {"Authorization": f"Bearer {access_token}"}
 
+            
+            # response = await client.post(f"{base_url}/auth/signup", json=data)
+            
             response_users = await client.delete(
                 f"{base_url}/users/me",
                 headers=headers,
-                follow_redirects=True,
+                # follow_redirects=True,
+                # json = form_data
             )
             request.session["access_token"] = None
             response_users.raise_for_status()
-            users = response_users.json()
+            # users = response_users.json()
 
             return templates.TemplateResponse(
                 "auth/logout.html", {"request": request}
