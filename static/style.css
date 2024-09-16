@@ -354,19 +354,19 @@ button {
 }
 
 .content::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 0, 0, 0.909);
     border-radius: 4px;
 }
 
 .content::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 0, 0);
 }
 
 .content {
     flex: 1;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+    scrollbar-color: rgba(255, 0, 0, 0.626) rgba(0, 0, 0, 0.1);
 }
 
 .file-upload-button {
@@ -390,7 +390,6 @@ button {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 15px;
 
     .chat-form-container {
         display: flex;
