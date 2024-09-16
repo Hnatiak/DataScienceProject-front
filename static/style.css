@@ -134,7 +134,6 @@ button {
     position: relative;
     border-radius: 5px;
     border: 2px solid transparent;
-
     font-size: 24px;
 
 }
@@ -229,6 +228,8 @@ button {
 .avatar-container {
     display: flex;
     justify-content: center;
+
+    margin-bottom: 20px;
 }
 
 .form-signup {
@@ -349,8 +350,8 @@ button {
     flex: 1;
 }
 
-.content::-webkit-scrollbar {
-    width: 8px;
+.content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .content::-webkit-scrollbar-thumb {
@@ -510,4 +511,14 @@ button {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+.message-component {
+    padding: 20px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #333333;
+    border-radius: 5px;
+    margin-top: 10px;
 }
