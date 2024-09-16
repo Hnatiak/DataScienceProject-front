@@ -6,6 +6,7 @@ from src.services.pdf_precessing import extract_text_from_pdf
 from envir_ import *
 # import requests
 import ast
+from typing import Optional
 
 
 router = APIRouter()
@@ -50,55 +51,6 @@ async def upload_pdf_form(request: Request):
                 )
 
 
-# # Функція для обробки PDF
-# @router.post("/upload_pdf_test", response_class=HTMLResponse)
-# async def upload_pdf(
-#     request: Request,
-#     pdf: UploadFile = File(...),
-#     description: str = Form(...),
-# ):
-#     access_token = request.session.get("access_token")
-#     if not access_token:
-#         # Відмовити у доступі, якщо токен відсутній
-#         return templates.TemplateResponse("access_denied.html", {"request": request})
-
-#     # Отримання тексту з PDF (функція повинна бути реалізована окремо)
-#     pdf_text = extract_text_from_pdf(pdf.file)
-
-
-#     async with httpx.AsyncClient() as client:
-#         try:
-#             form_data = {
-#                 "description": description,
-#                 "text": pdf_text,
-#             }
-
-#             headers = {"Authorization": f"Bearer {access_token}"}
-
-#             response = await client.post(
-#                 f"{base_url}/pdf/upload_new_pdf/", headers=headers, data=form_data
-#             )
-
-#             response.raise_for_status()
-#             ansver_from = response.json()
-
-#             return templates.TemplateResponse("/pdf/upload_pdf_success.html", {"request": request, "pdf_text": ansver_from})
-
-#         except httpx.HTTPStatusError as e:
-#             if e.response.status_code == 401:
-#                 return templates.TemplateResponse(
-#                     "access_denied.html", {"request": request}
-#                 )
-#             if e.response.status_code == 429:
-#                 return templates.TemplateResponse(
-#                     "suspicious_activity.html", {"request": request}
-#                 )
-#             else:
-#                 raise HTTPException(
-#                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-#                     detail=f"Failed to fetch users: {e}",
-#                 )
-        
 
 # Функція для завантаження тексту з ПДФ док-ту
 @router.post("/upload_pdf", response_class=HTMLResponse)
@@ -118,23 +70,29 @@ async def upload_pdf(
     except:
         return templates.TemplateResponse("pdf/no_text.html", {"request": request})
 
+    try:
+        async with httpx.AsyncClient() as client:
+            form_data = {
+                "description": pdf.filename,
+                "text": pdf_text,
+            }
 
-    async with httpx.AsyncClient() as client:
-        form_data = {
-            "description": pdf.filename,
-            "text": pdf_text,
-        }
+            headers = {"Authorization": f"Bearer {access_token}"}
 
-        headers = {"Authorization": f"Bearer {access_token}"}
+            response = await client.post(
+                f"{base_url}/pdf/upload_new_pdf_test/", headers=headers, data=form_data
+            )
 
-        response = await client.post(
-            f"{base_url}/pdf/upload_new_pdf_test/", headers=headers, data=form_data
-        )
+            response.raise_for_status()
+            # ansver_from = response.json()
 
-        response.raise_for_status()
-        ansver_from = response.json()
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code == 409:
+            return templates.TemplateResponse(
+                "pdf/document_exists.html", {"request": request}
+            )
 
-    return templates.TemplateResponse("pdf/upload_pdf_success.html", {"request": request}) #, "pdf_text": ansver_from})
+    return templates.TemplateResponse("pdf/upload_pdf_success.html", {"request": request})
 
 
 
@@ -182,8 +140,8 @@ async def upload_page(request: Request,
 @router.post("/ask_question")
 async def ask_question(request: Request, 
                       question: str = Form(...),
-                      document_content: str = Form(...),
-                      document: str = Form(...),
+                      document_content: Optional[str] = Form("[]"),
+                      document: Optional[str] = Form(None) ,
                       documents: str = Form(...),
                       ):
     
@@ -191,6 +149,10 @@ async def ask_question(request: Request,
     if not access_token:
         # Відмовити у доступі, якщо токен відсутній
         return templates.TemplateResponse("auth/access_denied.html", {"request": request})
+
+    if not document or document == "":
+        return templates.TemplateResponse("pdf/no_choice_doc.html", {"request": request})
+    
 
     async with httpx.AsyncClient(timeout=None) as client:
         try:
@@ -238,3 +200,65 @@ async def ask_question(request: Request,
                 )
         
 
+
+
+# Задаємо питання, отрумуємо відповідь
+@router.post("/delete_logs")
+async def ask_question(request: Request, 
+                      question: str = Form(...),
+                      document_content: Optional[str] = Form("[]"),
+                      document: Optional[str] = Form(None) ,
+                      documents: str = Form(...),
+                      ):
+    
+    access_token = request.session.get("access_token")
+    if not access_token:
+        # Відмовити у доступі, якщо токен відсутній
+        return templates.TemplateResponse("auth/access_denied.html", {"request": request})
+
+    if not document or document == "":
+        return templates.TemplateResponse("pdf/no_choice_doc.html", {"request": request})
+    
+
+    async with httpx.AsyncClient(timeout=None) as client:
+        try:
+
+            form_data = {
+                "document": document,
+                }
+
+            headers = {"Authorization": f"Bearer {access_token}"}
+
+            response = await client.post(
+                f"{base_url}/query_history/{form_data}", headers=headers
+            )
+
+            response.raise_for_status()
+            ansver_from = response.json()
+
+    
+            document_list = documents.split(',')
+            document_content_list = ast.literal_eval(document_content)
+            document_content_list.append((question, ansver_from))
+
+            # Передаємо дані в шаблон
+            return templates.TemplateResponse("pdf/upload_pdf.html", {
+                "request": request,
+                "documents": document_list,
+                "document_content": document_content_list,
+                "selected_document": document  # Для того, щоб зберегти вибір
+            })
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 401:
+                return templates.TemplateResponse(
+                    "auth/access_denied.html", {"request": request}
+                )
+            # if e.response.status_code == 429:
+            #     return templates.TemplateResponse(
+            #         "suspicious_activity.html", {"request": request}
+            #     )
+            else:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail=f"Failed to fetch users: {e}",
+                )
