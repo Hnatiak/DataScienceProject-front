@@ -1,5 +1,26 @@
-УВАГА ПЕРЕД ПОЧАТКОМ ЗАПУСКУ ФРОНТЕНДУ, ЗАПУСТІТЬ БЕКЕНД! (Підніміть сервер в Docker і запустіть poetry)
+# FastAPI Data-Science Project
 
-start command:
+## Getting Started
 
-uvicorn app:app --reload --port 8001
+- ATTENTION BEFORE RUNNING THE FRONTEND, RUN THE BACKEND!
+https://github.com/Hnatiak/DataScienceProject-back
+
+1. Clone the repository:
+
+```bash
+https://github.com/Hnatiak/DataScienceProject-front
+```
+
+2. Install the dependencies:
+
+```bash
+pip install poetry
+poetry shell
+poetry update
+```
+
+
+6. Run the application:
+
+```bash
+python main.py
