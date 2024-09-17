@@ -1,7 +1,7 @@
 name: Deploy Frontend to Azure
 on:
   push:
-    branches: [ main ]
+    branches: [ main, lolo ]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,13 +13,17 @@ jobs:
         python-version: '3.10'
     - name: Install Poetry
       run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        pip install --user pipx
+        pipx install poetry==1.5.1
     - name: Install dependencies
       run: |
-        poetry install
+        poetry config virtualenvs.create false
+        poetry install --no-interaction --no-root
     - name: Export requirements
       run: poetry export -f requirements.txt --output requirements.txt --without-hashes
+    - name: Display error log
+      if: failure()
+      run: cat /home/runner/work/DataScienceProject-front/DataScienceProject-front/poetry-installer-error-*.log
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
